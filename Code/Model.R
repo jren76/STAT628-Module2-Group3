@@ -6,30 +6,27 @@ summary(d)
 attach(d)
 names(d)
 
-##STEPAIC
-library(MASS)
-fullModelFit = lm(BODYFAT~AGE+WEIGHT+HEIGHT+
-                    ABDOMEN+THIGH+NECK+CHEST+
-                    HIP+KNEE+ANKLE+BICEPS+FOREARM+WRIST) 
-summary(fullModelFit)
-
-step = stepAIC(fullModelFit,direction = "both")
-step$anova
-
-
 ## Best subset
 if(!require(leaps))  install.packages("leaps")  
 library(leaps)
 fit =  regsubsets(BODYFAT~AGE+WEIGHT+HEIGHT+
                     ABDOMEN+THIGH+NECK+CHEST+
-                    HIP+KNEE+ANKLE+BICEPS+FOREARM+WRIST,data = d)  
+                    HIP+KNEE+ANKLE+BICEPS+FOREARM+WRIST,data = d,nvmax = 13)  
 
-summary(fit)
-plot(fit,scale = "r2") 
+reg.sum = summary(fit)
+
+
 plot(fit,scale = "adjr2")
-plot(fit,scale = "Cp")
 plot(fit,scale = "bic")
 
-regsubsets_press(BODYFAT~AGE+WEIGHT+HEIGHT+
-                   ABDOMEN+THIGH+NECK+CHEST+
-                   HIP+KNEE+ANKLE+BICEPS+FOREARM+WRIST)
+par(mfrow = c(2,2))
+plot(reg.sum$rss,xlab="Number of Variables ",ylab="RSS",type = "l")
+plot(reg.sum$adjr2,xlab="Number of Variables ",ylab="adjr2",type = "l")
+plot(reg.sum$bic,xlab="Number of Variables ",ylab="bic",type = "l")
+plot(reg.sum$cp,xlab="Number of Variables ",ylab="cp",type = "l")
+
+
+Finalmodel = lm(BODYFAT ~ WEIGHT + ABDOMEN + WRIST,data = d)
+summary(Finalmodel)
+plot(Finalmodel,c(1,2))
+
