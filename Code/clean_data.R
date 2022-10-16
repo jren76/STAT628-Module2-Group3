@@ -105,40 +105,40 @@ df[c(which(THIGH>80)),]
 
 
 #Recalculate Potential Outlier of Body Fat % Observation 182
-obs182_density = df[182,2]
+obs182_density = df[182,3]
 obs182_density
 bodyfat182 = ((495/obs182_density) - 450)
 bodyfat182
-df[182,1] = bodyfat182
-df[182,1]
+df[182,2] = bodyfat182
+df[182,2]
 df[182,]
 
 
 
 
 #Recalculate Potential Outlier of Body Fat % Observation 216
-obs216_density = df[216,2]
+obs216_density = df[216,3]
 obs216_density
 bodyfat216 = ((495/obs216_density) - 450)
 bodyfat216
-df[216,1] = bodyfat216
-df[216,1]
+df[216,2] = bodyfat216
+df[216,2]
 df[216,]
 
 
 
 
 #Recalcuate Potential Outlier of  Height Observation 42
-weight_42 = df[42,4]
-bmi_42 = df[42,6]
+weight_42 = df[42,5]
+bmi_42 = df[42,7]
 height_42 = sqrt(weight_42*(703/bmi_42))
-df[42,5] = height_42
+df[42,6] = height_42
 df[42,]
 
 
 #By observing the potential outliers, the gentleman corresponding to ID Number 39 appears to be a mistake.
 #Measurements such as abdomen and thigh cannot be recalulate using other variables so we will take out that observation.
-bodyfat_new = df[-c(39,182,216),]
+bodyfat_new = df[-c(39,172,182,216),]
 dim(bodyfat_new) #sanity check
 summary(bodyfat_new)
 

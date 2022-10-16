@@ -1,6 +1,5 @@
 setwd("~/Desktop/628/Project 1")
-d = read.csv("Clean_data 1.csv")
-
+d = read.csv("Clean_data.csv")
 head(d)
 summary(d)
 attach(d)
@@ -18,12 +17,13 @@ reg.sum = summary(fit)
 
 plot(fit,scale = "adjr2")
 plot(fit,scale = "bic")
+plot(fit,scale = "Cp")
 
 par(mfrow = c(2,2))
-plot(reg.sum$rss,xlab="Number of Variables ",ylab="RSS",type = "l")
-plot(reg.sum$adjr2,xlab="Number of Variables ",ylab="adjr2",type = "l")
-plot(reg.sum$bic,xlab="Number of Variables ",ylab="bic",type = "l")
-plot(reg.sum$cp,xlab="Number of Variables ",ylab="cp",type = "l")
+plot(reg.sum$rsq,xlab="Number of Variables ",ylab="Rsq",type = "l")
+plot(reg.sum$adjr2,xlab="Number of Variables ",ylab="Adjr2",type = "l")
+plot(reg.sum$bic,xlab="Number of Variables ",ylab="BIC",type = "l")
+plot(reg.sum$cp,xlab="Number of Variables ",ylab="Cp",type = "l")
 
 
 Finalmodel = lm(BODYFAT ~ WEIGHT + ABDOMEN + WRIST,data = d)
