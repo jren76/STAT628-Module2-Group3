@@ -16,3 +16,9 @@ Clean_data.csv is the dataset we used to develop our model. This dataset only ha
 
 ## Shiny App
 https://acterzis.shinyapps.io/BodyFatCalculator/
+
+## Contact
+Abby Terzis terzis@wisc.edu  
+Jianwei Ren jren76@wisc.edu  
+Xingze Wang xwang2586@wisc.edu
+
